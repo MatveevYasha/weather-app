@@ -34,7 +34,7 @@ class _CitySearchScreenState extends State<CitySearchScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 30),
+              padding: const EdgeInsets.symmetric(vertical: 20),
               child: Text(
                 'Weather',
                 style: textTheme.displayLarge,

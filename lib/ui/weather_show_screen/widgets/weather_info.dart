@@ -4,6 +4,9 @@ import 'package:weather_app/data/models/weather_api.dart';
 import 'package:weather_app/domain/weather_notifier.dart';
 import 'package:weather_app/theme/text_theme.dart';
 import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
+import 'package:weather_app/ui/weather_show_screen/widgets/custom_arrow_painter.dart';
+import 'package:weather_app/ui/weather_show_screen/widgets/custom_weather_painter.dart';
+import "dart:math" show pi;
 
 class WeatherInfo extends StatelessWidget {
   const WeatherInfo({
@@ -14,7 +17,7 @@ class WeatherInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     var data = context.watch<WeatherNotifier>().data;
     return Padding(
-      padding: const EdgeInsets.only(left: 13, right: 19),
+      padding: const EdgeInsets.only(left: 13, right: 19, top: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -36,7 +39,10 @@ class WeatherInfo extends StatelessWidget {
                     },
                     child: const Text('Back'),
                   ),
-                  Text('Время'),
+                  Text(
+                    '${data.dt}',
+                    style: TextStyle(color: Colors.red),
+                  ),
                 ],
               ),
             ],
@@ -83,6 +89,25 @@ class WeatherInfo extends StatelessWidget {
             description: 'Wind',
             meaning: '${data.wind.speed.round()} m/s',
           ),
+          Stack(
+            children: [
+              CustomPaint(
+                painter: CustomWeatherPainter(
+                  windDirection: data.wind.deg,
+                ),
+              ),
+              Transform.rotate(
+                origin: const Offset(0, 100),
+                angle: (data.wind.deg) / (pi),
+                // angle: 0,
+                child: CustomPaint(
+                  painter: CustomArrowPainter(
+                    windDirection: data.wind.deg,
+                  ),
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );
