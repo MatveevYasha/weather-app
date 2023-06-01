@@ -11,19 +11,19 @@ class CustomArrowPainter extends CustomPainter {
         const Offset(0, 0),
         const Offset(0, 200),
         Paint()
-          ..color = Colors.red
+          ..color = Colors.grey
           ..strokeWidth = 6);
     canvas.drawLine(
         const Offset(0, 0),
         const Offset(20, 50),
         Paint()
-          ..color = Colors.red
+          ..color = Colors.grey
           ..strokeWidth = 6);
     canvas.drawLine(
         const Offset(0, 0),
         const Offset(-20, 50),
         Paint()
-          ..color = Colors.red
+          ..color = Colors.grey
           ..strokeWidth = 6);
   }
 

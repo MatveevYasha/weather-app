@@ -18,97 +18,109 @@ class WeatherInfo extends StatelessWidget {
     var data = context.watch<WeatherNotifier>().data;
     return Padding(
       padding: const EdgeInsets.only(left: 13, right: 19, top: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          // header
-          Stack(
-            children: [
-              Center(
-                child: Text(
-                  data.name,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // header
+            Stack(
+              children: [
+                Center(
+                  child: Text(
+                    data.name,
+                    style: textTheme.displayLarge,
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Back'),
+                    ),
+                    Text(
+                      '${data.dt}',
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            // main info
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Text(
+                toBeginningOfSentenceCase(data.weather.first.description)!,
+                style: textTheme.displayMedium,
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/images/${data.weather.first.icon}.png',
+                  scale: 0.7,
+                ),
+                Text(
+                  '${data.main.temp.round()}\u2103',
                   style: textTheme.displayLarge,
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text('Back'),
-                  ),
-                  Text(
-                    '${data.dt}',
-                    style: TextStyle(color: Colors.red),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          // main info
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Text(
-              toBeginningOfSentenceCase(data.weather.first.description)!,
+              ],
+            ),
+            Text(
+              'Feels like ${data.main.feelsLike.round()}\u2103',
               style: textTheme.displayMedium,
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/images/${data.weather.first.icon}.png',
-                scale: 0.7,
-              ),
-              Text(
-                '${data.main.temp.round()}\u2103',
-                style: textTheme.displayLarge,
-              ),
-            ],
-          ),
-          Text(
-            'Feels like ${data.main.feelsLike.round()}\u2103',
-            style: textTheme.displayMedium,
-          ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-          // dop info
-          _DetailDescription(
-            data: data,
-            description: 'Humidity',
-            meaning: '${data.main.humidity.round()}%',
-          ),
-          _DetailDescription(
-            data: data,
-            description: 'Pressure',
-            meaning: '${data.main.pressure.round()} mmHg',
-          ),
-          _DetailDescription(
-            data: data,
-            description: 'Wind',
-            meaning: '${data.wind.speed.round()} m/s',
-          ),
-          Stack(
-            children: [
-              CustomPaint(
-                painter: CustomWeatherPainter(
-                  windDirection: data.wind.deg,
-                ),
-              ),
-              Transform.rotate(
-                origin: const Offset(0, 100),
-                angle: (data.wind.deg) / (pi),
-                // angle: 0,
-                child: CustomPaint(
-                  painter: CustomArrowPainter(
+            SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+            // доп info
+            _DetailDescription(
+              data: data,
+              description: 'Humidity',
+              meaning: '${data.main.humidity.round()}%',
+            ),
+            _DetailDescription(
+              data: data,
+              description: 'Pressure',
+              meaning: '${data.main.pressure.round()} mmHg',
+            ),
+            _DetailDescription(
+              data: data,
+              description: 'Wind',
+              meaning: '${data.wind.speed.round()} m/s',
+            ),
+            // компас
+            Stack(
+              children: [
+                CustomPaint(
+                  painter: CustomWeatherPainter(
                     windDirection: data.wind.deg,
                   ),
                 ),
-              ),
-            ],
-          )
-        ],
+                Transform.rotate(
+                  origin: const Offset(0, 100),
+                  angle: (data.wind.deg) / (pi),
+                  child: CustomPaint(
+                    painter: CustomArrowPainter(
+                      windDirection: data.wind.deg,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+                height:
+                    230), // заменить на контейнер, сделать что то с размером 200
+
+            // информация на 3 дня
+            Container(
+              decoration: BoxDecoration(
+                  color: Colors.grey, borderRadius: BorderRadius.circular(20)),
+              height: 300,
+            ),
+          ],
+        ),
       ),
     );
   }
