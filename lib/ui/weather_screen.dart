@@ -21,10 +21,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
   Future<void> _loadWeather(String cityName) async {
     try {
-      // final responce = await dio
-      //     .get('https://run.mocky.io/v3/654bd15e-b121-49ba-a588-960956b15175');
-      // final phones = Phones.fromJson(responce.data);
-      // return phones;
       final responce = await dio.get(
           'http://api.openweathermap.org/data/2.5/weather?q=$cityName,ru&units=metric&APPID=62b3007ab0b0b2b46cc05af643ea9dc0');
       final weather = WeatherApi.fromJson(responce.data);
@@ -70,7 +66,13 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       },
                       child: Text('load'),
                     )
-                  : Text(data.name),
+                  : Column(
+                      children: [
+                        Text(data.name),
+                        Image.asset(
+                            'assets/images/${data.weather.first.icon}.png')
+                      ],
+                    ),
             ],
           ),
         ),
