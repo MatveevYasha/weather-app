@@ -11,4 +11,9 @@ TextTheme textTheme = const TextTheme(
     fontSize: 16,
     color: Colors.white,
   ),
+  displayMedium: TextStyle(
+    // fontFamily: 'Inter',
+    fontWeight: FontWeight.w600,
+    fontSize: 30,
+  ),
 );

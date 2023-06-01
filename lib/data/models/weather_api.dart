@@ -1,10 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:weather_app/models/clouds.dart';
-import 'package:weather_app/models/coord.dart';
-import 'package:weather_app/models/main.dart';
-import 'package:weather_app/models/sys.dart';
-import 'package:weather_app/models/weather.dart';
-import 'package:weather_app/models/wind.dart';
+import 'package:weather_app/data/models/clouds.dart';
+import 'package:weather_app/data/models/coord.dart';
+import 'package:weather_app/data/models/main.dart';
+import 'package:weather_app/data/models/sys.dart';
+import 'package:weather_app/data/models/weather.dart';
+import 'package:weather_app/data/models/wind.dart';
 
 import 'package:json_annotation/json_annotation.dart';
 

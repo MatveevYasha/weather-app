@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/theme/text_theme.dart';
 import 'package:weather_app/ui/city_search_screen.dart';
-import 'package:weather_app/ui/weather_screen.dart';
 
 final dio = Dio();
 
@@ -22,7 +21,7 @@ class WeatherApp extends StatelessWidget {
         textTheme: textTheme,
         useMaterial3: true,
       ),
-      home: WeatherScreen(),
+      home: const CitySearchScreen(),
     );
   }
 }

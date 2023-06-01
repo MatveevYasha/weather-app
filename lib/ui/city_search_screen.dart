@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:weather_app/domain/weather_notifier.dart';
 import 'package:weather_app/theme/text_theme.dart';
+import 'package:weather_app/ui/weather_show_screen/weather_show_screen.dart';
 
 class CitySearchScreen extends StatefulWidget {
   const CitySearchScreen({super.key});
@@ -60,19 +63,29 @@ class _CitySearchScreenState extends State<CitySearchScreen> {
               ),
             ),
             const Spacer(),
-            Container(
-              margin: const EdgeInsets.only(right: 16, left: 16, bottom: 50),
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.07,
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
-                borderRadius: BorderRadius.circular(100),
+            GestureDetector(
+              onTap: () {
+                context.read<WeatherNotifier>().load(_controller.text);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const WeatherShowScreen()),
+                );
+              },
+              child: Container(
+                margin: const EdgeInsets.only(right: 16, left: 16, bottom: 50),
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height * 0.07,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primary,
+                  borderRadius: BorderRadius.circular(100),
+                ),
+                child: Center(
+                    child: Text(
+                  'Get the weather forecast',
+                  style: textTheme.titleMedium,
+                )),
               ),
-              child: Center(
-                  child: Text(
-                'Get the weather forecast',
-                style: textTheme.titleMedium,
-              )),
             ),
           ],
         ),

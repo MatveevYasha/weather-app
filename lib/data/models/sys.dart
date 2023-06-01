@@ -6,14 +6,14 @@ part 'sys.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Sys {
-  final int type;
-  final int id;
+  final int? type;
+  final int? id;
   final String country;
   final int sunrise;
   final int sunset;
   Sys({
-    required this.type,
-    required this.id,
+    this.type,
+    this.id,
     required this.country,
     required this.sunrise,
     required this.sunset,

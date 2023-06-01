@@ -6,11 +6,14 @@ part 'wind.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Wind {
-  final int speed;
+  final double speed;
   final int deg;
+  final double? dust;
+
   Wind({
     required this.speed,
     required this.deg,
+    this.dust,
   });
 
   factory Wind.fromJson(Map<String, dynamic> json) => _$WindFromJson(json);
