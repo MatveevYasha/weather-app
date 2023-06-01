@@ -65,7 +65,8 @@ class _CitySearchScreenState extends State<CitySearchScreen> {
             const Spacer(),
             GestureDetector(
               onTap: () {
-                context.read<WeatherNotifier>().load(_controller.text);
+                // context.read<WeatherNotifier>().load(_controller.text);
+                context.read<WeatherNotifier>().load('saratov');
                 Navigator.push(
                   context,
                   MaterialPageRoute(

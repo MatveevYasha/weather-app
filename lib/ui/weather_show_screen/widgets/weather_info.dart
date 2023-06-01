@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_app/data/models/weather_api.dart';
 import 'package:weather_app/domain/weather_notifier.dart';
 import 'package:weather_app/theme/text_theme.dart';
 import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
@@ -15,31 +16,110 @@ class WeatherInfo extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 13, right: 19),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Row(
+          // header
+          Stack(
             children: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text('Back'),
-              ),
-              Expanded(
-                  child: Center(
+              Center(
                 child: Text(
                   data.name,
                   style: textTheme.displayLarge,
                 ),
-              )),
-              Text('Время'),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text('Back'),
+                  ),
+                  Text('Время'),
+                ],
+              ),
             ],
           ),
-          Column(
+          // main info
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Text(
+              toBeginningOfSentenceCase(data.weather.first.description)!,
+              style: textTheme.displayMedium,
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(toBeginningOfSentenceCase(data.weather.first.description)!),
-              Image.asset('assets/images/${data.weather.first.icon}.png'),
-              Text(data.main.temp.toString())
+              Image.asset(
+                'assets/images/${data.weather.first.icon}.png',
+                scale: 0.7,
+              ),
+              Text(
+                '${data.main.temp.round()}\u2103',
+                style: textTheme.displayLarge,
+              ),
             ],
+          ),
+          Text(
+            'Feels like ${data.main.feelsLike.round()}\u2103',
+            style: textTheme.displayMedium,
+          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+          // dop info
+          _DetailDescription(
+            data: data,
+            description: 'Humidity',
+            meaning: '${data.main.humidity.round()}%',
+          ),
+          _DetailDescription(
+            data: data,
+            description: 'Pressure',
+            meaning: '${data.main.pressure.round()} mmHg',
+          ),
+          _DetailDescription(
+            data: data,
+            description: 'Wind',
+            meaning: '${data.wind.speed.round()} m/s',
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _DetailDescription extends StatelessWidget {
+  final String description;
+  final String meaning;
+
+  const _DetailDescription({
+    super.key,
+    required this.data,
+    required this.description,
+    required this.meaning,
+  });
+
+  final WeatherApi data;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 2, left: 60),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Text(
+              description,
+              style: textTheme.displayMedium,
+            ),
+          ),
+          Expanded(
+            child: Text(
+              meaning,
+              style: textTheme.displayMedium,
+            ),
           ),
         ],
       ),
