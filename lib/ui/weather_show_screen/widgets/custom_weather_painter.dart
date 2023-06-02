@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomWeatherPainter extends CustomPainter {
-  int windDirection;
-  CustomWeatherPainter({
-    required this.windDirection,
-  });
+  CustomWeatherPainter();
   @override
   void paint(Canvas canvas, Size size) {
     canvas.drawCircle(

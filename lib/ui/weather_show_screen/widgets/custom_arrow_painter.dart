@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomArrowPainter extends CustomPainter {
-  int windDirection;
+  final Color color;
   CustomArrowPainter({
-    required this.windDirection,
+    required this.color,
   });
   @override
   void paint(Canvas canvas, Size size) {
@@ -11,19 +11,19 @@ class CustomArrowPainter extends CustomPainter {
         const Offset(0, 0),
         const Offset(0, 200),
         Paint()
-          ..color = Colors.grey
+          ..color = color
           ..strokeWidth = 6);
     canvas.drawLine(
         const Offset(0, 0),
         const Offset(20, 50),
         Paint()
-          ..color = Colors.grey
+          ..color = color
           ..strokeWidth = 6);
     canvas.drawLine(
         const Offset(0, 0),
         const Offset(-20, 50),
         Paint()
-          ..color = Colors.grey
+          ..color = color
           ..strokeWidth = 6);
   }
 

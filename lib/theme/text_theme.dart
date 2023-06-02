@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 TextTheme textTheme = const TextTheme(
   displayLarge: TextStyle(
-    // fontFamily: 'Inter',
     fontWeight: FontWeight.w600,
     fontSize: 30,
   ),

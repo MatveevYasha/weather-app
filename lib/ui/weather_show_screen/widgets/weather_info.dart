@@ -98,16 +98,14 @@ class WeatherInfo extends StatelessWidget {
             Stack(
               children: [
                 CustomPaint(
-                  painter: CustomWeatherPainter(
-                    windDirection: data.list.first.wind.deg,
-                  ),
+                  painter: CustomWeatherPainter(),
                 ),
                 Transform.rotate(
                   origin: const Offset(0, 100),
                   angle: (data.list.first.wind.deg) / (pi),
                   child: CustomPaint(
                     painter: CustomArrowPainter(
-                      windDirection: data.list.first.wind.deg,
+                      color: Colors.red,
                     ),
                   ),
                 ),
@@ -179,7 +177,13 @@ class WeatherInfo extends StatelessWidget {
                                 Text(
                                     '${data.list.first.main.pressure.round()}'),
                                 Text('${data.list.first.wind.speed.round()}'),
-                                SizedBox(width: 15),
+                                Transform.rotate(
+                                  angle: (data.list[index].wind.deg) / (pi),
+                                  child: const Icon(
+                                    Icons.arrow_upward,
+                                    color: Colors.white,
+                                  ),
+                                ),
                                 Image.asset(
                                   'assets/images/${data.list.first.weather.first.icon}.png',
                                   scale: 3,
