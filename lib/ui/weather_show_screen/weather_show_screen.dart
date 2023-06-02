@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/domain/weather_notifier.dart';
-import 'package:weather_app/ui/weather_show_screen/widgets/weather_info.dart';
+import 'package:weather_app/ui/weather_show_screen/weather_info.dart';
 
 class WeatherShowScreen extends StatefulWidget {
   const WeatherShowScreen({super.key});
