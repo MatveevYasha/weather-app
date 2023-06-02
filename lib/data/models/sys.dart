@@ -6,17 +6,10 @@ part 'sys.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Sys {
-  final int? type;
-  final int? id;
-  final String country;
-  final int sunrise;
-  final int sunset;
+  final String pod;
+
   Sys({
-    this.type,
-    this.id,
-    required this.country,
-    required this.sunrise,
-    required this.sunset,
+    required this.pod,
   });
 
   factory Sys.fromJson(Map<String, dynamic> json) => _$SysFromJson(json);

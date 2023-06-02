@@ -27,7 +27,7 @@ class WeatherInfo extends StatelessWidget {
               children: [
                 Center(
                   child: Text(
-                    data.name,
+                    data.city.name,
                     style: textTheme.displayLarge,
                   ),
                 ),
@@ -41,8 +41,7 @@ class WeatherInfo extends StatelessWidget {
                       child: const Text('Back'),
                     ),
                     Text(
-                      '${data.dt}',
-                      style: TextStyle(color: Colors.red),
+                      data.list.first.dtTxt,
                     ),
                   ],
                 ),
@@ -52,7 +51,8 @@ class WeatherInfo extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: Text(
-                toBeginningOfSentenceCase(data.weather.first.description)!,
+                toBeginningOfSentenceCase(
+                    data.list.first.weather.first.description)!,
                 style: textTheme.displayMedium,
               ),
             ),
@@ -60,17 +60,17 @@ class WeatherInfo extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  'assets/images/${data.weather.first.icon}.png',
+                  'assets/images/${data.list.first.weather.first.icon}.png',
                   scale: 0.7,
                 ),
                 Text(
-                  '${data.main.temp.round()}\u2103',
+                  '${data.list.first.main.temp.round()}\u2103',
                   style: textTheme.displayLarge,
                 ),
               ],
             ),
             Text(
-              'Feels like ${data.main.feelsLike.round()}\u2103',
+              'Feels like ${data.list.first.main.feelsLike.round()}\u2103',
               style: textTheme.displayMedium,
             ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.04),
@@ -78,32 +78,32 @@ class WeatherInfo extends StatelessWidget {
             _DetailDescription(
               data: data,
               description: 'Humidity',
-              meaning: '${data.main.humidity.round()}%',
+              meaning: '${data.list.first.main.humidity.round()}%',
             ),
             _DetailDescription(
               data: data,
               description: 'Pressure',
-              meaning: '${data.main.pressure.round()} mmHg',
+              meaning: '${data.list.first.main.pressure.round()} mmHg',
             ),
             _DetailDescription(
               data: data,
               description: 'Wind',
-              meaning: '${data.wind.speed.round()} m/s',
+              meaning: '${data.list.first.wind.speed.round()} m/s',
             ),
             // компас
             Stack(
               children: [
                 CustomPaint(
                   painter: CustomWeatherPainter(
-                    windDirection: data.wind.deg,
+                    windDirection: data.list.first.wind.deg,
                   ),
                 ),
                 Transform.rotate(
                   origin: const Offset(0, 100),
-                  angle: (data.wind.deg) / (pi),
+                  angle: (data.list.first.wind.deg) / (pi),
                   child: CustomPaint(
                     painter: CustomArrowPainter(
-                      windDirection: data.wind.deg,
+                      windDirection: data.list.first.wind.deg,
                     ),
                   ),
                 ),

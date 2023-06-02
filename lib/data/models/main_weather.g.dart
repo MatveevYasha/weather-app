@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'main.dart';
+part of 'main_weather.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Main _$MainFromJson(Map<String, dynamic> json) => Main(
+MainWeather _$MainWeatherFromJson(Map<String, dynamic> json) => MainWeather(
       temp: (json['temp'] as num).toDouble(),
       feelsLike: (json['feels_like'] as num).toDouble(),
       tempMin: (json['temp_min'] as num).toDouble(),
@@ -15,9 +15,11 @@ Main _$MainFromJson(Map<String, dynamic> json) => Main(
       humidity: json['humidity'] as int,
       seaLevel: json['sea_level'] as int?,
       grndLevel: json['grnd_level'] as int?,
+      tempKf: (json['temp_kf'] as num?)?.toDouble(),
     );
 
-Map<String, dynamic> _$MainToJson(Main instance) => <String, dynamic>{
+Map<String, dynamic> _$MainWeatherToJson(MainWeather instance) =>
+    <String, dynamic>{
       'temp': instance.temp,
       'feels_like': instance.feelsLike,
       'temp_min': instance.tempMin,
@@ -26,4 +28,5 @@ Map<String, dynamic> _$MainToJson(Main instance) => <String, dynamic>{
       'humidity': instance.humidity,
       'sea_level': instance.seaLevel,
       'grnd_level': instance.grndLevel,
+      'temp_kf': instance.tempKf,
     };
