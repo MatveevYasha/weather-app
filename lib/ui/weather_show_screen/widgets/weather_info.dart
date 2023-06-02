@@ -41,7 +41,11 @@ class WeatherInfo extends StatelessWidget {
                       child: const Text('Back'),
                     ),
                     Text(
-                      data.list.first.dtTxt,
+                      data.list.first.dtTxt
+                          .split(' ')[1]
+                          .split(':')
+                          .getRange(0, 2)
+                          .join(':'),
                     ),
                   ],
                 ),
@@ -115,9 +119,80 @@ class WeatherInfo extends StatelessWidget {
 
             // информация на 3 дня
             Container(
+              padding: const EdgeInsets.all(15),
               decoration: BoxDecoration(
-                  color: Colors.grey, borderRadius: BorderRadius.circular(20)),
-              height: 300,
+                color: const Color(0xFF4A4A4A),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              height: MediaQuery.of(context).size.height * 0.7,
+              width: double.infinity,
+              child: DefaultTextStyle(
+                style: textTheme.titleMedium!
+                    .copyWith(fontWeight: FontWeight.w500),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 3),
+                      child: Text(
+                        'Forecast for 3 days',
+                        style: textTheme.titleMedium,
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Time'),
+                          Text('t\u00B0'),
+                          Text('Hum'),
+                          Text('Pres'),
+                          Text('Wind'),
+                          Text('Wx'),
+                        ],
+                      ),
+                    ),
+                    const Divider(
+                      color: Colors.black,
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: data.list.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 7),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  data.list[index].dtTxt
+                                      .split(' ')[1]
+                                      .split(':')
+                                      .getRange(0, 2)
+                                      .join(':'),
+                                ),
+                                Text(
+                                  '${data.list[index].main.temp.round()}\u2103',
+                                ),
+                                Text(
+                                    '${data.list.first.main.humidity.round()}%'),
+                                Text(
+                                    '${data.list.first.main.pressure.round()}'),
+                                Text('${data.list.first.wind.speed.round()}'),
+                                SizedBox(width: 15),
+                                Image.asset(
+                                  'assets/images/${data.list.first.weather.first.icon}.png',
+                                  scale: 3,
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              ),
             ),
           ],
         ),
