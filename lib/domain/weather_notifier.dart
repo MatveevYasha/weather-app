@@ -8,11 +8,22 @@ class WeatherNotifier with ChangeNotifier {
 
   late WeatherApi data;
   bool isLoading = true;
+  bool hasError = false;
+  String errorString = '';
 
   void load(String cityName) async {
-    final rep = await _weatherRepository.loading(cityName);
-    data = rep;
-    isLoading = false;
+    try {
+      hasError = false;
+      isLoading = true;
+      final rep = await _weatherRepository.loading(cityName);
+      data = rep;
+      isLoading = false;
+    } catch (e) {
+      hasError = true;
+      isLoading = false;
+      errorString = e.toString();
+    }
+
     notifyListeners();
   }
 }

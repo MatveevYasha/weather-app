@@ -7,6 +7,8 @@ import 'package:weather_app/ui/city_search_screen/widgets/custom_button.dart';
 import 'package:weather_app/ui/city_search_screen/widgets/custom_text_field.dart';
 import 'package:weather_app/ui/weather_show_screen/weather_show_screen.dart';
 
+final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
 class CitySearchScreen extends StatefulWidget {
   const CitySearchScreen({super.key});
 
@@ -50,13 +52,27 @@ class _CitySearchScreenState extends State<CitySearchScreen> {
             const Spacer(),
             CustomButton(
               onTap: () {
-                context.read<WeatherNotifier>().load(_controller.text);
-                // context.read<WeatherNotifier>().load('saratov');
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const WeatherShowScreen()),
-                );
+                if (formKey.currentState!.validate()) {
+                  context.read<WeatherNotifier>().load(_controller.text);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const WeatherShowScreen()),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      backgroundColor: Colors.red,
+                      duration: const Duration(milliseconds: 750),
+                      content: Center(
+                        child: Text(
+                          'Enter error',
+                          style: textTheme.titleMedium,
+                        ),
+                      ),
+                    ),
+                  );
+                }
               },
             ),
           ],

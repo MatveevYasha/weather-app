@@ -12,17 +12,9 @@ class NetWeatherRepository extends WeatherRepository {
 
   @override
   Future<WeatherApi> loading(String cityName) async {
-    try {
-      final responce = await dio.get(
-          'https://api.openweathermap.org/data/2.5/forecast?q=$cityName&units=metric&appid=62b3007ab0b0b2b46cc05af643ea9dc0');
-      final weather = WeatherApi.fromJson(responce.data);
-      return weather;
-    } catch (e) {
-      throw Exception('Loading error in repository: $e');
-    }
+    final responce = await dio.get(
+        'https://api.openweathermap.org/data/2.5/forecast?q=$cityName&units=metric&appid=62b3007ab0b0b2b46cc05af643ea9dc0');
+    final weather = WeatherApi.fromJson(responce.data);
+    return weather;
   }
 }
-
-// https://api.openweathermap.org/data/2.5/forecast?q=moscow&appid=62b3007ab0b0b2b46cc05af643ea9dc0
-
-// 'http://api.openweathermap.org/data/2.5/weather?q=$cityName,ru&units=metric&APPID=62b3007ab0b0b2b46cc05af643ea9dc0'
