@@ -54,6 +54,7 @@ class _CitySearchScreenState extends State<CitySearchScreen> {
               onTap: () {
                 if (formKey.currentState!.validate()) {
                   context.read<WeatherNotifier>().load(_controller.text);
+                  _controller.clear();
                   Navigator.push(
                     context,
                     MaterialPageRoute(

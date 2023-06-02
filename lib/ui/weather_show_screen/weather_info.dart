@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_app/data/hive/boxes.dart';
 import 'package:weather_app/domain/weather_notifier.dart';
 import 'package:weather_app/theme/text_theme.dart';
 import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
@@ -17,6 +18,9 @@ class WeatherInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var data = context.watch<WeatherNotifier>().data;
+    print('Save: ${data.city.name}');
+    print('Lenght1: ${boxCities.length}');
+    context.read<WeatherNotifier>().saveCity(data.city.name);
     return Padding(
       padding: const EdgeInsets.only(left: 13, right: 19, top: 20),
       child: SingleChildScrollView(

@@ -79,8 +79,11 @@ class ThreeDaysForecast extends StatelessWidget {
                             color: Colors.white,
                           ),
                         ),
-                        Image.asset(
-                          'assets/images/${data.list.first.weather.first.icon}.png',
+                        Image.network(
+                          'https://openweathermap.org/img/wn/${data.list.first.weather.first.icon}@2x.png',
+                          errorBuilder: (context, error, stackTrace) {
+                            return Image.asset('assets/images/no_image.png');
+                          },
                           scale: 3,
                         ),
                       ],

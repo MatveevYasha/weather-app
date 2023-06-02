@@ -15,9 +15,11 @@ class MainInfo extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset(
-          'assets/images/${data.list.first.weather.first.icon}.png',
-          scale: 0.7,
+        Image.network(
+          'https://openweathermap.org/img/wn/${data.list.first.weather.first.icon}@2x.png',
+          errorBuilder: (context, error, stackTrace) {
+            return Image.asset('assets/images/no_image.png');
+          },
         ),
         Text(
           '${data.list.first.main.temp.round()}\u2103',
