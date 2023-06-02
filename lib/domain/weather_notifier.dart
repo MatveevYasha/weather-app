@@ -9,7 +9,7 @@ class WeatherNotifier with ChangeNotifier {
   late WeatherApi data;
   bool isLoading = true;
   bool hasError = false;
-  String errorString = '';
+  String errorMessage = '';
 
   void load(String cityName) async {
     try {
@@ -21,7 +21,15 @@ class WeatherNotifier with ChangeNotifier {
     } catch (e) {
       hasError = true;
       isLoading = false;
-      errorString = e.toString();
+      if (e.toString().contains('404')) {
+        errorMessage = 'There is no such city';
+      } else {
+        if (e.toString().contains('null')) {
+          errorMessage = 'Сheck your internet connection';
+        } else {
+          errorMessage = 'Unknown error';
+        }
+      }
     }
 
     notifyListeners();

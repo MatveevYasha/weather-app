@@ -11,8 +11,7 @@ class CustomAlertDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: const Text('Error'),
-      content:
-          Text(context.watch<WeatherNotifier>().errorString.split(': ')[1]),
+      content: Text(context.watch<WeatherNotifier>().errorMessage),
       actions: <Widget>[
         TextButton(
           onPressed: () => Navigator.pop(context, 'OK'),
