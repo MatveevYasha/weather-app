@@ -11,6 +11,11 @@ class CustomWeatherPainter extends CustomPainter {
           ..color = Colors.black
           ..style = PaintingStyle.stroke
           ..strokeWidth = 5);
+    canvas.drawCircle(
+      const Offset(0, 100),
+      97.5,
+      Paint()..color = Colors.white,
+    );
     canvas.drawLine(
         const Offset(-100, 100),
         const Offset(100, 100),

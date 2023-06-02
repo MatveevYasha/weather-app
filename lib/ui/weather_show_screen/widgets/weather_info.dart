@@ -38,7 +38,10 @@ class WeatherInfo extends StatelessWidget {
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      child: const Text('Back'),
+                      child: Text(
+                        'Back',
+                        style: textTheme.titleLarge,
+                      ),
                     ),
                     Text(
                       data.list.first.dtTxt
@@ -46,6 +49,7 @@ class WeatherInfo extends StatelessWidget {
                           .split(':')
                           .getRange(0, 2)
                           .join(':'),
+                      style: textTheme.titleLarge,
                     ),
                   ],
                 ),
@@ -95,25 +99,26 @@ class WeatherInfo extends StatelessWidget {
               meaning: '${data.list.first.wind.speed.round()} m/s',
             ),
             // компас
-            Stack(
-              children: [
-                CustomPaint(
-                  painter: CustomWeatherPainter(),
-                ),
-                Transform.rotate(
-                  origin: const Offset(0, 100),
-                  angle: (data.list.first.wind.deg) / (pi),
-                  child: CustomPaint(
-                    painter: CustomArrowPainter(
-                      color: Colors.red,
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Stack(
+                children: [
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.25),
+                  CustomPaint(
+                    painter: CustomWeatherPainter(),
+                  ),
+                  Transform.rotate(
+                    origin: const Offset(0, 100),
+                    angle: (data.list.first.wind.deg) / (pi),
+                    child: CustomPaint(
+                      painter: CustomArrowPainter(
+                        color: Colors.red,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-            const SizedBox(
-                height:
-                    230), // заменить на контейнер, сделать что то с размером 200
 
             // информация на 3 дня
             Container(

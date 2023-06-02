@@ -15,8 +15,9 @@ class WeatherApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 0, 0, 0),
-          primary: const Color(0xFF5DB075),
+          seedColor: Colors.white,
+          primary: Colors.black,
+          background: const Color(0xFF359EFF),
         ),
         textTheme: textTheme,
         useMaterial3: true,

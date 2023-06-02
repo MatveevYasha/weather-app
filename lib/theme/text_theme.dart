@@ -10,6 +10,11 @@ TextTheme textTheme = const TextTheme(
     fontSize: 16,
     color: Colors.white,
   ),
+  titleLarge: TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+    color: Colors.black,
+  ),
   displayMedium: TextStyle(
     fontWeight: FontWeight.w400,
     fontSize: 20,

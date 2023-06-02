@@ -78,14 +78,13 @@ class _CitySearchScreenState extends State<CitySearchScreen> {
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * 0.07,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary,
+                  color: Theme.of(context).colorScheme.onPrimary,
                   borderRadius: BorderRadius.circular(100),
                 ),
                 child: Center(
-                    child: Text(
-                  'Get the weather forecast',
-                  style: textTheme.titleMedium,
-                )),
+                    child: Text('Get the weather forecast',
+                        style: textTheme.titleMedium!
+                            .copyWith(color: Colors.black))),
               ),
             ),
           ],
