@@ -13,7 +13,7 @@ class NetWeatherRepository extends WeatherRepository {
   @override
   Future<WeatherApi> loading(String cityName) async {
     final responce = await dio.get(
-        'https://api.openweathermap.org/data/2.5/forecast?q=$cityName&units=metric&appid=62b3007ab0b0b2b46cc05af643ea9dc0');
+        'https://api.openweathermap.org/data/2.5/forecast?q=$cityName&units=metric&appid=apiKey');
     final weather = WeatherApi.fromJson(responce.data);
     return weather;
   }
