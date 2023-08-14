@@ -12,8 +12,11 @@ class NetWeatherRepository extends WeatherRepository {
 
   @override
   Future<WeatherApi> loading(String cityName) async {
-    final responce = await dio.get(
-        'https://api.openweathermap.org/data/2.5/forecast?q=$cityName&units=metric&appid=apiKey');
+// Необходимо зарегистроваться и получить apiKey, потом ввести его в переменную.
+    const String apiKey = '';
+
+    final responce =
+        await dio.get('https://api.openweathermap.org/data/2.5/forecast?q=$cityName&units=metric&appid=$apiKey');
     final weather = WeatherApi.fromJson(responce.data);
     return weather;
   }
