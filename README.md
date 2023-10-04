@@ -1,5 +1,31 @@
 # weather-app
 
+# Приложение, выполненное в качестве тестового задания
+По публичному API погоды: https://openweathermap.org/api/hourly-forecast#name5  
+
+### Особености приложения:
+1. Используется кеширование (Hive) для запоминания городов
+2. На главном экране элемент направления ветра выполнен с помощью CustomPaint
+3. Обработка ошибок при неправильном вводе города (показывается кастомный экран с ошибкой)
+4. По тестовому заданию необходимо было расписывать время, затраченное на задание (приведено ниже)
+
+
+## Скриншоты приложения:
+<div class="row" align="center">
+  <img src="./docs/assets/search_screen.png" width="375" alt="search_screen" style="margin-right: 30px;" />
+  <img src="./docs/assets/hive_screen.png" width="375" alt="search_screen" style="margin-bottom: 60px;/">
+</div>
+
+<div class="row" align="center">
+  <img src="./docs/assets/main_screen.png" width="375" alt="main_screen" style="margin-right: 30px;" />
+  <img src="./docs/assets/main_screen2.png" width="375" alt="main_screen" style="margin-bottom: 60px;"/>
+</div>
+
+<div class="row" align="center">
+  <img src="./docs/assets/error_screen.png" width="375" alt="error" style="margin-right: 30px;" />
+</div>
+
+
 ## Time
 Четверг
 09:15 Создание репозитория
